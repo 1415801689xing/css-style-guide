@@ -1,33 +1,37 @@
-# Airbnb CSS / Sass Styleguide
+# Airbnb CSS / Sass 风格指南
 
-*A mostly reasonable approach to CSS and Sass*
+*用更合理的方式写 CSS 和 Sass*
 
-## Table of Contents
+翻译自 [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/css)
 
-  1. [Terminology](#terminology)
-    - [Rule Declaration](#rule-declaration)
-    - [Selectors](#selectors)
-    - [Properties](#properties)
+## 目录
+
+  1. [术语](#terminology)
+    - [规则声明](#rule-declaration)
+    - [选择器](#selectors)
+    - [属性](#properties)
   1. [CSS](#css)
-    - [Formatting](#formatting)
-    - [Comments](#comments)
-    - [OOCSS and BEM](#oocss-and-bem)
-    - [ID Selectors](#id-selectors)
-    - [JavaScript hooks](#javascript-hooks)
-    - [Border](#border)
+    - [格式](#formatting)
+    - [注释](#comments)
+    - [OOCSS 和 BEM](#oocss-and-bem)
+    - [ID 选择器](#id-selectors)
+    - [JavaScript 钩子](#javascript-hooks)
+    - [边框](#border)
   1. [Sass](#sass)
-    - [Syntax](#syntax)
-    - [Ordering](#ordering-of-property-declarations)
-    - [Variables](#variables)
+    - [语法](#syntax)
+    - [排序](#ordering-of-property-declarations)
+    - [变量](#variables)
     - [Mixins](#mixins)
-    - [Extend directive](#extend-directive)
-    - [Nested selectors](#nested-selectors)
+    - [扩展指令](#extend-directive)
+    - [嵌套的选择器](#nested-selectors)
 
-## Terminology
+<a name="terminology"></a>
+## 术语
 
-### Rule declaration
+<a name="rule-declaration"></a>
+### 规则声明
 
-A “rule declaration” is the name given to a selector (or a group of selectors) with an accompanying group of properties. Here's an example:
+我们把一个（或一组）选择器与其伴随的属性集合称之为“规则声明”。举个例子：
 
 ```css
 .listing {
@@ -36,9 +40,10 @@ A “rule declaration” is the name given to a selector (or a group of selector
 }
 ```
 
-### Selectors
+<a name="selectors"></a>
+### 选择器
 
-In a rule declaration, “selectors” are the bits that determine which elements in the DOM tree will be styled by the defined properties. Selectors can match HTML elements, as well as an element's class, ID, or any of its attributes. Here are some examples of selectors:
+在规则声明中，“选择器”部分将决定样式属性会被应用到 DOM 树中哪些元素。选择器可以匹配 HTML 元素，也可以匹配一个元素的类名、ID, 或者元素拥有的属性。以下是选择器的例子：
 
 ```css
 .my-element-class {
@@ -50,9 +55,10 @@ In a rule declaration, “selectors” are the bits that determine which element
 }
 ```
 
-### Properties
+<a name="properties"></a>
+### 属性
 
-Finally, properties are what give the selected elements of a rule declaration their style. Properties are key-value pairs, and a rule declaration can contain one or more property declarations. Property declarations look like this:
+最后，属性决定了规则声明里被选择的元素将得到何种样式。属性以键值对形式存在，一个规则声明可以包含一或多个属性定义。以下是属性定义的例子：
 
 ```css
 /* some selector */ {
@@ -61,18 +67,20 @@ Finally, properties are what give the selected elements of a rule declaration th
 }
 ```
 
+<a name="css"></a>
 ## CSS
 
-### Formatting
+<a name="formatting"></a>
+### 格式
 
-* Use soft tabs (2 spaces) for indentation
-* Prefer dashes over camelCasing in class names. Underscores are OK if you're using BEM (see [OOCSS and BEM](#oocss-and-bem) below).
-* Do not use ID selectors
-* When using multiple selectors in a rule declaration, give each selector its own line.
-* Put a space before the opening brace `{` in rule declarations
-* In properties, put a space after, but not before, the `:` character.
-* Put closing braces `}` of rule declarations on a new line
-* Put blank lines between rule declarations
+* 使用 2 个空格作为缩进。
+* 类名建议使用破折号代替驼峰法。如果你使用 BEM，也可以使用下划线（参见下面的的 [OOCSS 和 BEM](#oocss-and-bem)）。
+* 不要使用 ID 选择器。
+* 在一个规则声明中应用了多个选择器时，每个选择器独占一行。
+* 在规则声明的左大括号 `{` 前加上一个空格。
+* 在属性的冒号 `:` 后面加上一个空格，前面不加空格。
+* 规则声明的右大括号 `}` 独占一行。
+* 规则声明之间用空行分隔开。
 
 **Bad**
 
@@ -103,34 +111,38 @@ Finally, properties are what give the selected elements of a rule declaration th
 }
 ```
 
-### Comments
+<a name="comments"></a>
+### 注释
 
-* Prefer line comments (`//` in Sass-land) to block comments.
-* Prefer comments on their own line. Avoid end-of-line comments.
-* Write detailed comments for code that isn't self-documenting:
-  - Uses of z-index
-  - Compatibility or browser-specific hacks
+* 建议使用行注释 (在 Sass 中是 `//`) 代替块注释。
+* 建议在当行给代码写注释。避免行末注释。
+* 为代码作详细的注释，而不是写自述文档，比如：
+  - z-index 的用处
+  - 兼容性处理或者针对特定浏览器的 hack
 
-### OOCSS and BEM
+<a name="oocss-and-bem"></a>
+### OOCSS 和 BEM
 
-We encourage some combination of OOCSS and BEM for these reasons:
+出于以下原因，我们鼓励使用 OOCSS 和 BEM 的组合：
 
-  * It helps create clear, strict relationships between CSS and HTML
-  * It helps us create reusable, composable components
-  * It allows for less nesting and lower specificity
-  * It helps in building scalable stylesheets
+  * 可以帮助我们理清 CSS 和 HTML 之间清晰且严谨的关系。
+  * 可以帮助我们创建出可重用、易装配的组件。
+  * 可以减少嵌套，降低特定性。
+  * 可以帮助我们创建出可扩展的样式表。
 
-**OOCSS**, or “Object Oriented CSS”, is an approach for writing CSS that encourages you to think about your stylesheets as a collection of “objects”: reusuable, repeatable snippets that can be used independently throughout a website.
+**OOCSS**，也就是 “Object Oriented CSS（面向对象的CSS）”，是一种写 CSS 的方法，其思想就是鼓励你把样式表看作“对象”的集合：可重用性、可重复性的代码段让你可以在整个网站中多次使用。
 
-  * Nicole Sullivan's [OOCSS wiki](https://github.com/stubbornella/oocss/wiki)
-  * Smashing Magazine's [Introduction to OOCSS](http://www.smashingmagazine.com/2011/12/12/an-introduction-to-object-oriented-css-oocss/)
+参考资料：
 
-**BEM**, or “Block-Element-Modifier”, is a _naming convention_ for classes in HTML and CSS. It was originally developed by Yandex with large codebases and scalability in mind, and can serve as a solid set of guidelines for implementing OOCSS.
+  * Nicole Sullivan 的 [OOCSS wiki](https://github.com/stubbornella/oocss/wiki)
+  * Smashing Magazine 的 [Introduction to OOCSS](http://www.smashingmagazine.com/2011/12/12/an-introduction-to-object-oriented-css-oocss/)
 
-  * CSS Trick's [BEM 101](https://css-tricks.com/bem-101/)
-  * Harry Roberts' [introduction to BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)
+**BEM**，也就是 “Block-Element-Modifier”，是一种用于 HTML 和 CSS 类名的_命名约定_。BEM 最初是由 Yandex 提出的，要知道他们拥有巨大的代码库和可伸缩性，并且可以作为一套贯彻 OOCSS 的参考指导规范。
 
-**Example**
+  * CSS Trick 的 [BEM 101](https://css-tricks.com/bem-101/)
+  * Harry Roberts 的 [introduction to BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)
+
+**示例**
 
 ```html
 <article class="listing-card listing-card--featured">
@@ -151,29 +163,32 @@ We encourage some combination of OOCSS and BEM for these reasons:
 .listing-card__content { }
 ```
 
-  * `.listing-card` is the “block” and represents the higher-level component
-  * `.listing-card__title` is an “element” and represents a descendant of `.listing-card` that helps compose the block as a whole.
-  * `.listing-card--featured` is a “modifier” and represents a different state or variation on the `.listing-card` block.
+  * `.listing-card` 是一个块（block），表示高层次的组件。
+  * `.listing-card__title` 是一个元素（element），它属于 `.listing-card` 的一部分，因此块是由元素组成的。
+  * `.listing-card--featured` 是一个修饰符（modifier），表示这个块与 `.listing-card` 有着不同的状态或者变化。
 
-### ID selectors
+<a name="id-selectors"></a>
+### ID 选择器
 
-While it is possible to select elements by ID in CSS, it should generally be considered an anti-pattern. ID selectors introduce an unnecessarily high level of [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) to your rule declarations, and they are not reusable.
+在 CSS 中，虽然可以通过 ID 选择元素，但通常都会把这种方式列为反面教材。ID 选择器给你的规则声明带来了不必要的高[优先级](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)，而且 ID 选择器是不可重用的。
 
-For more on this subject, read [CSS Wizardry's article](http://csswizardry.com/2014/07/hacks-for-dealing-with-specificity/) on dealing with specificity.
+想要了解关于这个主题的更多内容，参见 [CSS Wizardry 的文章](http://csswizardry.com/2014/07/hacks-for-dealing-with-specificity/)，文章中有关于如何处理优先级的内容。
 
-### JavaScript hooks
+<a name="javascript-hooks"></a>
+### JavaScript 钩子
 
-Avoid binding to the same class in both your CSS and JavaScript. Conflating the two often leads to, at a minimum, time wasted during refactoring when a developer must cross-reference each class they are changing, and at its worst, developers being afraid to make changes for fear of breaking functionality.
+避免在 CSS 和 JavaScript 中绑定相同的类。否则通常会导致以下两种后果：起码在重构的时候，开发者不得不把时间花费在两边对照每个要改变的类；更糟糕的是，开发者甚至会因为害怕破坏功能而不敢作出更改。
 
-We recommend creating JavaScript-specific classes to bind to, prefixed with `.js-`:
+我们推荐在创建用于特定 JavaScript 的类名时，添加 `.js-` 前缀：
 
 ```html
 <button class="btn btn-primary js-request-to-book">Request to Book</button>
 ```
 
-### Border
+<a name="border"></a>
+### 边框
 
-Use `0` instead of `none` to specify that a style has no border.
+在定义无边框样式时，使用 `0` 代替 `none`。
 
 **Bad**
 
@@ -191,18 +206,21 @@ Use `0` instead of `none` to specify that a style has no border.
 }
 ```
 
+<a name="sass"></a>
 ## Sass
 
-### Syntax
+<a name="syntax"></a>
+### 语法
 
-* Use the `.scss` syntax, never the original `.sass` syntax
-* Order your regular CSS and `@include` declarations logically (see below)
+* 使用 `.scss` 的语法，绝不使用 `.sass` 语法。
+* 给你的 CSS 和 `@include` 声明按照以下逻辑排序（参见下文）
 
-### Ordering of property declarations
+<a name="ordering-of-property-declarations"></a>
+### 属性声明的排序
 
-1. Property declarations
+1. 属性声明
 
-    List all standard property declarations, anything that isn't an `@include` or a nested selector.
+    首先列出除去 `@include` 和嵌套选择器之外的所有属性声明。
 
     ```scss
     .btn-green {
@@ -212,9 +230,9 @@ Use `0` instead of `none` to specify that a style has no border.
     }
     ```
 
-2. `@include` declarations
+2. `@include` 声明
 
-    Grouping `@include`s at the end makes it easier to read the entire selector.
+    紧随后面的是 `@include`，这样可以使得整个选择器的可读性更高。
 
     ```scss
     .btn-green {
@@ -225,9 +243,9 @@ Use `0` instead of `none` to specify that a style has no border.
     }
     ```
 
-3. Nested selectors
+3. 嵌套选择器
 
-    Nested selectors, _if necessary_, go last, and nothing goes after them. Add whitespace between your rule declarations and nested selectors, as well as between adjacent nested selectors. Apply the same guidelines as above to your nested selectors.
+    _如果有必要_用到嵌套选择器，把它们放到最后，在规则声明和嵌套选择器之间要加上空白，相邻嵌套选择器之间也要加上空白。嵌套选择器中的内容也要遵循上述指引。
 
     ```scss
     .btn {
@@ -241,21 +259,25 @@ Use `0` instead of `none` to specify that a style has no border.
     }
     ```
 
-### Variables
+<a name="variables"></a>
+### 变量
 
-Prefer dash-cased variable names (e.g. `$my-variable`) over camelCased or snake_cased variable names. It is acceptable to prefix variable names that are intended to be used only within the same file with an underscore (e.g. `$_my-variable`).
+变量名应使用破折号 (例如 `$my-variable`) 代替 camelCased 和 snake_cased 风格。对于仅用在当前文件的变量，可以在变量名之前添加下划线前缀 (例如 `$_my-variable`)。
 
+<a name="mixins"></a>
 ### Mixins
 
-Mixins should be used to DRY up your code, add clarity, or abstract complexity--in much the same way as well-named functions. Mixins that accept no arguments can be useful for this, but note that if you are not compressing your payload (e.g. gzip), this may contribute to unnecessary code duplication in the resulting styles.
+为了让代码遵循 DRY 原则（Don't Repeat Yourself）、增强清晰性、或者抽象化复杂性，应该使用 mixin，这与那些命名良好的函数的作用是异曲同工的。虽然 mixin 可以不接收参数，但要注意，假如你不压缩负载（比如通过 gzip），这样会导致最终的样式包含不必要的代码重复。
 
-### Extend directive
+<a name="extend-directive"></a>
+### 扩展指令
 
-`@extend` should be avoided because it has unintuitive and potentially dangerous behavior, especially when used with nested selectors. Even extending top-level placeholder selectors can cause problems if the order of selectors ends up changing later (e.g. if they are in other files and the order the files are loaded shifts). Gzipping should handle most of the savings you would have gained by using `@extend`, and you can DRY up your stylesheets nicely with mixins.
+应避免使用 `@extend` 指令，因为它并不直观，而且具有潜在风险，特别是用在嵌套选择器的时候。即使是在扩展顶层占位符选择器，如果选择器的顺序最终会改变，也可能会导致问题。（比如，如果它们存在于其他文件，而加载顺序发生了变化）。其实 gzip 已经帮助你取得了使用 `@extend` 所获得的大部分优化效果，因此你只需要通过 mixin 让样式表更加符合 DRY 就足够了。
 
-### Nested selectors
+<a name="nested-selectors"></a>
+### 嵌套选择器
 
-**Do not nest selectors more than three levels deep!**
+**请不要让嵌套选择器的深度超过 3 层！**
 
 ```scss
 .page-container {
@@ -267,13 +289,13 @@ Mixins should be used to DRY up your code, add clarity, or abstract complexity--
 }
 ```
 
-When selectors become this long, you're likely writing CSS that is:
+当遇到以上情况的时候，你也许是这样写 CSS 的：
 
-* Strongly coupled to the HTML (fragile) *—OR—*
-* Overly specific (powerful) *—OR—*
-* Not reusable
+* 与 HTML 强耦合的(也是脆弱的) *—或者—*
+* 过于具体 (强大) *—或者—*
+* 没有重用
 
 
-Again: **never nest ID selectors!**
+再说一遍: **不要嵌套 ID 选择器！**
 
-If you must use an ID selector in the first place (and you should really try not to), they should never be nested. If you find yourself doing this, you need to revisit your markup, or figure out why such strong specificity is needed. If you are writing well formed HTML and CSS, you should **never** need to do this.
+首先，如果你坚持要使用 ID 选择器（其实你真的不应该尝试这么做），那就不应该嵌套它们。如果你发现你正要这么做，你需要重新检查你的标签，或者指明为什么需要这样具体的特征。如果你正打算写出格式良好的 HTML 和 CSS，你是**不**应该这样做的。
