@@ -23,7 +23,7 @@
     - [变量](#variables)
     - [Mixins](#mixins)
     - [扩展指令](#extend-directive)
-    - [嵌套的选择器](#nested-selectors)
+    - [嵌套选择器](#nested-selectors)
 
 <a name="terminology"></a>
 ## 术语
