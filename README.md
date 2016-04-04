@@ -170,14 +170,14 @@
 <a name="id-selectors"></a>
 ### ID 选择器
 
-在 CSS 中，虽然可以通过 ID 选择元素，但通常都会把这种方式列为反面教材。ID 选择器给你的规则声明带来了不必要的高[优先级](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)，而且 ID 选择器是不可重用的。
+在 CSS 中，虽然可以通过 ID 选择元素，但大家通常都会把这种方式列为反面教材。ID 选择器给你的规则声明带来了不必要的高[优先级](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)，而且 ID 选择器是不可重用的。
 
 想要了解关于这个主题的更多内容，参见 [CSS Wizardry 的文章](http://csswizardry.com/2014/07/hacks-for-dealing-with-specificity/)，文章中有关于如何处理优先级的内容。
 
 <a name="javascript-hooks"></a>
 ### JavaScript 钩子
 
-避免在 CSS 和 JavaScript 中绑定相同的类。否则通常会导致以下两种后果：在重构的时候，开发者轻则浪费时间在对照查找每个要改变的类，重则因为害怕破坏功能而不敢作出更改。
+避免在 CSS 和 JavaScript 中绑定相同的类。否则开发者在重构时通常会出现以下情况：轻则浪费时间在对照查找每个要改变的类，重则因为害怕破坏功能而不敢作出更改。
 
 我们推荐在创建用于特定 JavaScript 的类名时，添加 `.js-` 前缀：
 
@@ -212,8 +212,8 @@
 <a name="syntax"></a>
 ### 语法
 
-* 使用 `.scss` 的语法，绝不使用 `.sass` 语法。
-* 给你的 CSS 和 `@include` 声明按照以下逻辑排序（参见下文）
+* 使用 `.scss` 的语法，不使用 `.sass` 原本的语法。
+* CSS 和 `@include` 声明按照以下逻辑排序（参见下文）
 
 <a name="ordering-of-property-declarations"></a>
 ### 属性声明的排序
@@ -262,17 +262,17 @@
 <a name="variables"></a>
 ### 变量
 
-变量名应使用破折号（例如 `$my-variable`）代替 camelCased 和 snake_cased 风格。对于仅用在当前文件的变量，可以在变量名之前添加下划线前缀 （例如 `$_my-variable`）。
+变量名应使用破折号（例如 `$my-variable`）代替 camelCased 和 snake_cased 风格。对于仅用在当前文件的变量，可以在变量名之前添加下划线前缀（例如 `$_my-variable`）。
 
 <a name="mixins"></a>
 ### Mixins
 
-为了让代码遵循 DRY 原则（Don't Repeat Yourself）、增强清晰性、或者抽象化复杂性，应该使用 mixin，这与那些命名良好的函数的作用是异曲同工的。虽然 mixin 可以不接收参数，但要注意，假如你不压缩负载（比如通过 gzip），这样会导致最终的样式包含不必要的代码重复。
+为了让代码遵循 DRY 原则（Don't Repeat Yourself）、增强清晰性或抽象化复杂性，应该使用 mixin，这与那些命名良好的函数的作用是异曲同工的。虽然 mixin 可以不接收参数，但要注意，假如你不压缩负载（比如通过 gzip），这样会导致最终的样式包含不必要的代码重复。
 
 <a name="extend-directive"></a>
 ### 扩展指令
 
-应避免使用 `@extend` 指令，因为它并不直观，而且具有潜在风险，特别是用在嵌套选择器的时候。即使是在扩展顶层占位符选择器，如果选择器的顺序最终会改变，也可能会导致问题。（比如，如果它们存在于其他文件，而加载顺序发生了变化）。其实 gzip 已经帮助你取得了使用 `@extend` 所获得的大部分优化效果，因此你只需要通过 mixin 让样式表更加符合 DRY 就足够了。
+应避免使用 `@extend` 指令，因为它并不直观，而且具有潜在风险，特别是用在嵌套选择器的时候。即便是在顶层占位符选择器使用扩展，如果选择器的顺序最终会改变，也可能会导致问题。（比如，如果它们存在于其他文件，而加载顺序发生了变化）。其实 gzip 已经帮助你获得了使用 `@extend` 所获得的大部分优化效果，因此你只需要通过 mixin 让样式表更加符合 DRY 就足够了。
 
 <a name="nested-selectors"></a>
 ### 嵌套选择器
